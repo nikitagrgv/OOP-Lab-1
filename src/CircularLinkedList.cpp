@@ -1,8 +1,10 @@
 #include <iostream>
+#include <limits>
 
 #include "CircularLinkedList.h"
 #include "Node.h"
 
+void foo() const;
 using namespace std;
 
 CircularLinkedList::CircularLinkedList(const CircularLinkedList& list)
@@ -17,14 +19,36 @@ CircularLinkedList::CircularLinkedList(const CircularLinkedList& list)
     } while (node != list.getHead());
 }
 
+CircularLinkedList::CircularLinkedList(CircularLinkedList&& list) noexcept
+{
+    swap(this->_head, list._head);
+}
+
 CircularLinkedList::~CircularLinkedList()
 {
-    for (auto node = getTail(); node != _head; node = getTail())
+    while (_head != nullptr)
     {
-        delete node;
+        removeNode(_head);
+    }
+}
+
+void CircularLinkedList::removeNode(Node* node)
+{
+    if (node == _head)
+    {
+        Node* node_after_head = _head->getNext();
+
+        if (node_after_head == _head)
+        {
+            _head = nullptr;
+        }
+        else
+        {
+            _head = node_after_head;
+        }
     }
 
-    delete _head;
+    delete node;
 }
 
 Node* CircularLinkedList::getHead() const
@@ -67,26 +91,12 @@ Node* CircularLinkedList::insertToEnd(int value)
 
 Node* CircularLinkedList::insertBeforeNode(int value, Node* node)
 {
-    auto new_node = new Node(value);
-    Node::placeNodeBetween(new_node, node->getPrevious(), node);
-    return new_node;
+    return new Node(value, node->getPrevious(), node);
 }
 
 Node* CircularLinkedList::insertAfterNode(int value, Node* node)
 {
-    auto new_node = new Node(value);
-    Node::placeNodeBetween(new_node, node, node->getNext());
-    return new_node;
-}
-
-void CircularLinkedList::removeNode(Node* node)
-{
-    if (node == _head)
-    {
-        _head = nullptr;
-    }
-
-    delete node;
+    return new Node(value, node, node->getNext());
 }
 
 ostream& operator<<(ostream& os, const CircularLinkedList& list)
@@ -110,7 +120,7 @@ istream& operator>>(istream& is, CircularLinkedList& list)
     if (result.fail())
     {
         cin.clear();
-        cin.ignore(1);
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
         throw runtime_error("Invalid node value");
     }

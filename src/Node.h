@@ -11,17 +11,16 @@ private:
     Node* _previous = this;
 
 private:
-    Node(int value);
+    explicit Node(int value);
     Node(int value, Node* previous, Node* next);
-
     virtual ~Node();
 
+    void placeBetween(Node* previous, Node* next);
+
     static void connectNodes(Node* previous, Node* next);
-    static void placeNodeBetween(Node* new_node, Node* previous, Node* next);
 
 public:
     Node(const Node& node) = delete;
-    Node(const Node&& node) = delete;
 
     int getValue() const;
     void setValue(int value);

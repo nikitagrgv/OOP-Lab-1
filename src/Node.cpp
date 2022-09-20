@@ -7,8 +7,7 @@ Node::Node(int value) : _value(value)
 
 Node::Node(int value, Node* previous, Node* next) : Node(value)
 {
-    _previous = previous;
-    _next = next;
+    placeBetween(previous, next);
 }
 
 Node::~Node()
@@ -16,16 +15,16 @@ Node::~Node()
     connectNodes(_previous, _next);
 }
 
+void Node::placeBetween(Node* previous, Node* next)
+{
+    connectNodes(previous, this);
+    connectNodes(this, next);
+}
+
 void Node::connectNodes(Node* previous, Node* next)
 {
     previous->_next = next;
     next->_previous = previous;
-}
-
-void Node::placeNodeBetween(Node* new_node, Node* previous, Node* next)
-{
-    connectNodes(previous, new_node);
-    connectNodes(new_node, next);
 }
 
 int Node::getValue() const

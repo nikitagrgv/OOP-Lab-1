@@ -14,8 +14,11 @@ private:
 public:
     CircularLinkedList() = default;
     CircularLinkedList(const CircularLinkedList& list);
+    CircularLinkedList(CircularLinkedList&& list) noexcept;
 
     virtual ~CircularLinkedList();
+
+    void removeNode(Node* node);
 
     Node* getHead() const;
     Node* getTail() const;
@@ -25,12 +28,9 @@ public:
 
     Node* insertBeforeNode(int value, Node* node);
     Node* insertAfterNode(int value, Node* node);
-
-    void removeNode(Node* node);
 };
 
 ostream& operator<<(ostream& os, const CircularLinkedList& list);
 istream& operator>>(istream& is, CircularLinkedList& list);
-CircularLinkedList operator+(const CircularLinkedList& list1, const CircularLinkedList& list2);
 
 #endif //LAB1_CIRCULARLINKEDLIST_H
