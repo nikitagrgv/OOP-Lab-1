@@ -119,8 +119,8 @@ istream& operator>>(istream& is, CircularLinkedList& list)
 
     if (result.fail())
     {
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        is.clear();
+        is.ignore(numeric_limits<streamsize>::max(), '\n');
 
         throw runtime_error("Invalid node value");
     }
