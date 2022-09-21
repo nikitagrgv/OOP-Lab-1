@@ -1,6 +1,5 @@
 #include <iostream>
 
-#include "Node.h"
 #include "CircularLinkedList.h"
 
 using namespace std;
@@ -22,9 +21,19 @@ int main()
 
     list1.findNode(-2)->setValue(-22222);
     node3->getNext()->getNext()->setValue(12345);
+    list1.findNode(4)->setValue(44444);
+
 
     cout << list1 << endl;
     cout << list2 << endl;
+
+    int sum = 0;
+    list1.doForEachNodeConst([&sum](auto node)
+                             {
+                                 sum += node->getValue();
+                             });
+
+    cout << "SUM: " << sum << endl;
 
     return 0;
 }
