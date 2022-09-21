@@ -8,7 +8,7 @@ CircularLinkedList::CircularLinkedList(const CircularLinkedList& list)
 {
     list.doForEachNodeConst([this](auto node)
                             {
-                                int value = node->getValue();
+                                auto value = node->getValue();
                                 this->insertToEnd(value);
                             });
 }

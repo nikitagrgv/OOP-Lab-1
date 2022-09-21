@@ -23,6 +23,7 @@ int main()
     node3->getNext()->getNext()->setValue(12345);
     list1.findNode(4)->setValue(44444);
 
+    list2.findNode(-3)->getPrevious()->setValue(111111);
 
     cout << list1 << endl;
     cout << list2 << endl;
@@ -34,6 +35,9 @@ int main()
                              });
 
     cout << "SUM: " << sum << endl;
+
+    cout << "size1 " << list1.getSize() << endl;
+    cout << "size2 " << list2.getSize() << endl;
 
     return 0;
 }
