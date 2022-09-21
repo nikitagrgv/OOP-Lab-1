@@ -1,6 +1,9 @@
 #ifndef LAB1_NODE_H
 #define LAB1_NODE_H
 
+#include <functional>
+#include <iostream>
+
 class Node
 {
     friend class CircularLinkedList;
@@ -27,6 +30,9 @@ public:
 
     Node* getNext() const;
     Node* getPrevious() const;
+
+    Node* insertBefore(int value);
+    Node* insertAfter(int value);
 };
 
 #endif //LAB1_NODE_H

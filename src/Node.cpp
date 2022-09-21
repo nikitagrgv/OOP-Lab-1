@@ -1,3 +1,5 @@
+#include <limits>
+#include <iostream>
 #include "CircularLinkedList.h"
 #include "Node.h"
 
@@ -47,3 +49,12 @@ Node* Node::getPrevious() const
     return _previous;
 }
 
+Node* Node::insertBefore(int value)
+{
+    return new Node(value, _previous, this);
+}
+
+Node* Node::insertAfter(int value)
+{
+    return new Node(value, this, _next);
+}

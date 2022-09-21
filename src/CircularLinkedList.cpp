@@ -64,7 +64,7 @@ Node* CircularLinkedList::insertToBegin(int value)
         return _head;
     }
 
-    _head = insertBeforeNode(value, _head);
+    _head = _head->insertBefore(value);
     return _head;
 }
 
@@ -76,17 +76,7 @@ Node* CircularLinkedList::insertToEnd(int value)
         return _head;
     }
 
-    return insertBeforeNode(value, _head);
-}
-
-Node* CircularLinkedList::insertBeforeNode(int value, Node* node)
-{
-    return new Node(value, node->getPrevious(), node);
-}
-
-Node* CircularLinkedList::insertAfterNode(int value, Node* node)
-{
-    return new Node(value, node, node->getNext());
+    return _head->insertBefore(value);
 }
 
 Node* CircularLinkedList::findNode(int value) const

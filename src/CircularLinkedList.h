@@ -32,9 +32,6 @@ public:
     Node* insertToBegin(int value);
     Node* insertToEnd(int value);
 
-    Node* insertBeforeNode(int value, Node* node);
-    Node* insertAfterNode(int value, Node* node);
-
     CircularLinkedList& operator+=(const CircularLinkedList& list);
 };
 
