@@ -6,7 +6,7 @@ class Node
     friend class CircularLinkedList;
 
 private:
-    int _value = 0;
+    int _value;
     Node* _next = this;
     Node* _previous = this;
 

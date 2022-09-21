@@ -4,7 +4,6 @@
 #include "CircularLinkedList.h"
 #include "Node.h"
 
-void foo() const;
 using namespace std;
 
 CircularLinkedList::CircularLinkedList(const CircularLinkedList& list)
@@ -99,6 +98,19 @@ Node* CircularLinkedList::insertAfterNode(int value, Node* node)
     return new Node(value, node, node->getNext());
 }
 
+Node* CircularLinkedList::findNode(int value) const
+{
+    for (auto node = getHead(); node != getTail(); node = node->getNext())
+    {
+        if (node->getValue() == value)
+        {
+            return node;
+        }
+    }
+
+    return nullptr;
+}
+
 ostream& operator<<(ostream& os, const CircularLinkedList& list)
 {
     auto node = list.getHead();
@@ -115,9 +127,9 @@ ostream& operator<<(ostream& os, const CircularLinkedList& list)
 istream& operator>>(istream& is, CircularLinkedList& list)
 {
     int value;
-    auto& result = is >> value;
+    is >> value;
 
-    if (result.fail())
+    if (is.fail())
     {
         is.clear();
         is.ignore(numeric_limits<streamsize>::max(), '\n');

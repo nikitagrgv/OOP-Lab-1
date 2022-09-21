@@ -23,6 +23,8 @@ public:
     Node* getHead() const;
     Node* getTail() const;
 
+    Node* findNode(int value) const;
+
     Node* insertToBegin(int value);
     Node* insertToEnd(int value);
 

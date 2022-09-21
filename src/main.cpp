@@ -7,32 +7,24 @@ using namespace std;
 
 int main()
 {
+    CircularLinkedList list1;
 
-    CircularLinkedList list;
+    list1.insertToEnd(1);
+    list1.insertToEnd(2);
+    auto node3 = list1.insertToEnd(3);
+    list1.insertToEnd(4);
+    list1.insertToBegin(-1);
+    list1.insertToBegin(-2);
+    list1.insertToBegin(-3);
+    list1.insertToBegin(-4);
 
-    list.insertToEnd(1);
+    auto list2 = list1;
 
-    list.getHead()->setValue(1111111111);
+    list1.findNode(-2)->setValue(-22222);
+    node3->getNext()->getNext()->setValue(12345);
 
-    list.insertToEnd(2);
-    auto node3 = list.insertToEnd(3);
-    list.insertToBegin(-1);
-    list.insertToEnd(4);
-    list.insertToEnd(5);
-    list.insertToBegin(-2);
-    list.insertToEnd(6);
-
-    CircularLinkedList list2 = list;
-
-    node3->setValue(333);
-    node3->getNext()->setValue(444);
-
-    cin >> list2;
-    cin >> list2;
-    cin >> list2;
-
-    cout << "list1: " << list << endl;
-    cout << "list2: " << list2 << endl;
+    cout << list1 << endl;
+    cout << list2 << endl;
 
     return 0;
 }
