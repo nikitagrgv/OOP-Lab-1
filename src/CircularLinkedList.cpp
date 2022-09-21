@@ -6,11 +6,7 @@
 
 CircularLinkedList::CircularLinkedList(const CircularLinkedList& list)
 {
-    list.doForEachNodeConst([this](auto node)
-                            {
-                                auto value = node->getValue();
-                                this->insertToEnd(value);
-                            });
+    *this += list;
 }
 
 CircularLinkedList::CircularLinkedList(CircularLinkedList&& list) noexcept
@@ -172,3 +168,22 @@ std::istream& operator>>(std::istream& is, CircularLinkedList& list)
     return is;
 }
 
+CircularLinkedList& CircularLinkedList::operator+=(const CircularLinkedList& list)
+{
+    list.doForEachNodeConst([this](auto node)
+                            {
+                                this->insertToEnd(node->getValue());
+                            });
+
+    return *this;
+}
+
+CircularLinkedList operator+(const CircularLinkedList& list1, const CircularLinkedList& list2)
+{
+    CircularLinkedList sum_list;
+
+    sum_list += list1;
+    sum_list += list2;
+
+    return sum_list;
+}

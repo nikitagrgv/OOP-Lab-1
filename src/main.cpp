@@ -25,19 +25,22 @@ int main()
 
     list2.findNode(-3)->getPrevious()->setValue(111111);
 
-    cout << list1 << endl;
-    cout << list2 << endl;
+    auto list12 = list1 + list2 + list2;
+
+    cout << "Size of list 1: " << list1.getSize() << endl;
+    cout << "Size of list 2: " << list2.getSize() << endl;
+    cout << "Size of list 3: " << list12.getSize() << endl;
+
+    cout << "List 1: " << list1 << endl;
+    cout << "List 2: " << list2 << endl;
+    cout << "List 3: " << list12 << endl;
 
     int sum = 0;
     list1.doForEachNodeConst([&sum](auto node)
                              {
                                  sum += node->getValue();
                              });
-
-    cout << "SUM: " << sum << endl;
-
-    cout << "size1 " << list1.getSize() << endl;
-    cout << "size2 " << list2.getSize() << endl;
+    cout << "Sum of list 1: " << sum << endl;
 
     return 0;
 }

@@ -34,9 +34,12 @@ public:
 
     Node* insertBeforeNode(int value, Node* node);
     Node* insertAfterNode(int value, Node* node);
+
+    CircularLinkedList& operator+=(const CircularLinkedList& list);
 };
 
 std::ostream& operator<<(std::ostream& os, const CircularLinkedList& list);
 std::istream& operator>>(std::istream& is, CircularLinkedList& list);
+CircularLinkedList operator+(const CircularLinkedList& list1, const CircularLinkedList& list2);
 
 #endif //LAB1_CIRCULARLINKEDLIST_H
