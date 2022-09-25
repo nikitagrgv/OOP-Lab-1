@@ -4,6 +4,7 @@
 
 using namespace std;
 
+
 int main()
 {
     CircularLinkedList list1;
@@ -76,7 +77,6 @@ int main()
                              });
     cout << "Sum of list3: " << list3_sum << endl;
     cout << "Product of list3: " << list3_product << endl;
-
 
     return 0;
 }

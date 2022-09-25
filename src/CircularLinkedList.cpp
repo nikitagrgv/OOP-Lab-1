@@ -9,7 +9,7 @@ CircularLinkedList::CircularLinkedList(const CircularLinkedList& list)
     *this += list;
 }
 
-CircularLinkedList::CircularLinkedList(CircularLinkedList&& list) noexcept
+CircularLinkedList::CircularLinkedList(CircularLinkedList&& list)
 {
     std::swap(this->_head, list._head);
 }
@@ -164,6 +164,25 @@ CircularLinkedList& CircularLinkedList::operator+=(const CircularLinkedList& lis
                             {
                                 this->insertToEnd(node->getValue());
                             });
+
+    return *this;
+}
+
+CircularLinkedList& CircularLinkedList::operator=(const CircularLinkedList& list)
+{
+    if (&list != this)
+    {
+        CircularLinkedList list_copy(list);
+        std::swap(list_copy._head, this->_head);
+    }
+
+    return *this;
+}
+
+CircularLinkedList& CircularLinkedList::operator=(CircularLinkedList&& list)
+{
+    CircularLinkedList tmp(std::move(list));
+    std::swap(tmp._head, this->_head);
 
     return *this;
 }

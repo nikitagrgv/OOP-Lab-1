@@ -13,7 +13,7 @@ private:
 public:
     CircularLinkedList() = default;
     CircularLinkedList(const CircularLinkedList& list);
-    CircularLinkedList(CircularLinkedList&& list) noexcept;
+    CircularLinkedList(CircularLinkedList&& list);
 
     virtual ~CircularLinkedList();
 
@@ -33,6 +33,8 @@ public:
     Node* insertToEnd(int value);
 
     CircularLinkedList& operator+=(const CircularLinkedList& list);
+    CircularLinkedList& operator=(const CircularLinkedList& list);
+    CircularLinkedList& operator=(CircularLinkedList&& list);
 };
 
 std::ostream& operator<<(std::ostream& os, const CircularLinkedList& list);

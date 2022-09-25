@@ -51,19 +51,19 @@ build cmake_object_order_depends_target_Lab1: phony || CMakeFiles/Lab1.dir
 
 build CMakeFiles/Lab1.dir/src/main.cpp.obj: CXX_COMPILER__Lab1_Debug C$:/Users/nekita/CLionProjects/Lab1/src/main.cpp || cmake_object_order_depends_target_Lab1
   DEP_FILE = CMakeFiles\Lab1.dir\src\main.cpp.obj.d
-  FLAGS = -g -std=gnu++14
+  FLAGS = -g -O0 -fno-elide-constructors -std=gnu++14
   OBJECT_DIR = CMakeFiles\Lab1.dir
   OBJECT_FILE_DIR = CMakeFiles\Lab1.dir\src
 
 build CMakeFiles/Lab1.dir/src/CircularLinkedList.cpp.obj: CXX_COMPILER__Lab1_Debug C$:/Users/nekita/CLionProjects/Lab1/src/CircularLinkedList.cpp || cmake_object_order_depends_target_Lab1
   DEP_FILE = CMakeFiles\Lab1.dir\src\CircularLinkedList.cpp.obj.d
-  FLAGS = -g -std=gnu++14
+  FLAGS = -g -O0 -fno-elide-constructors -std=gnu++14
   OBJECT_DIR = CMakeFiles\Lab1.dir
   OBJECT_FILE_DIR = CMakeFiles\Lab1.dir\src
 
 build CMakeFiles/Lab1.dir/src/Node.cpp.obj: CXX_COMPILER__Lab1_Debug C$:/Users/nekita/CLionProjects/Lab1/src/Node.cpp || cmake_object_order_depends_target_Lab1
   DEP_FILE = CMakeFiles\Lab1.dir\src\Node.cpp.obj.d
-  FLAGS = -g -std=gnu++14
+  FLAGS = -g -O0 -fno-elide-constructors -std=gnu++14
   OBJECT_DIR = CMakeFiles\Lab1.dir
   OBJECT_FILE_DIR = CMakeFiles\Lab1.dir\src
 
