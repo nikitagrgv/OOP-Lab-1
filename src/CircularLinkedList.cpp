@@ -58,13 +58,8 @@ Node* CircularLinkedList::getTail() const
 
 Node* CircularLinkedList::insertToBegin(int value)
 {
-    if (_head == nullptr)
-    {
-        _head = new Node(value);
-        return _head;
-    }
+    _head = insertToEnd(value);
 
-    _head = _head->insertBefore(value);
     return _head;
 }
 
