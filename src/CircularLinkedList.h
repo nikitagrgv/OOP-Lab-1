@@ -21,6 +21,8 @@ public:
 
     void removeNode(Node& node);
 
+    void clear();
+
     Node& getHead() const;
     Node& getTail() const;
 

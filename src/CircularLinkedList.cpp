@@ -16,10 +16,7 @@ CircularLinkedList::CircularLinkedList(CircularLinkedList&& list)
 
 CircularLinkedList::~CircularLinkedList()
 {
-    while (_head != nullptr)
-    {
-        removeNode(*_head);
-    }
+    clear();
 }
 
 void CircularLinkedList::removeNode(Node& node)
@@ -39,6 +36,14 @@ void CircularLinkedList::removeNode(Node& node)
     }
 
     delete &node;
+}
+
+void CircularLinkedList::clear()
+{
+    while (_head != nullptr)
+    {
+        removeNode(*_head);
+    }
 }
 
 Node& CircularLinkedList::getHead() const
