@@ -78,6 +78,13 @@ int main()
     cout << "Sum of list3: " << list3_sum << endl;
     cout << "Product of list3: " << list3_product << endl;
 
+    cout << "----------------------------------------------" << endl;
+
+    cout << "Enter the number of nodes, then the node values" << endl;
+    CircularLinkedList input_list;
+    cin >> input_list;
+    cout << "Entered list: " << input_list << endl;
+
     return 0;
 }
 

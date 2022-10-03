@@ -135,20 +135,31 @@ std::ostream& operator<<(std::ostream& os, const CircularLinkedList& list)
     return os;
 }
 
-std::istream& operator>>(std::istream& is, CircularLinkedList& list)
+static void checkIStream(std::istream& is)
 {
-    int value;
-    is >> value;
-
     if (is.fail())
     {
         is.clear();
         is.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-        throw std::runtime_error("Invalid node value");
+        throw std::runtime_error("Invalid CircularLinkedList data in stream");
     }
+}
 
-    list.insertToEnd(value);
+
+std::istream& operator>>(std::istream& is, CircularLinkedList& list)
+{
+    int count;
+    is >> count;
+    checkIStream(is);
+
+    for (int i = 0; i < count; ++i)
+    {
+        int value;
+        is >> value;
+        checkIStream(is);
+        list.insertToEnd(value);
+    }
 
     return is;
 }
