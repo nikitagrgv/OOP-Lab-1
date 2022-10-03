@@ -31,11 +31,11 @@ public:
     int getValue() const;
     void setValue(int value);
 
-    Node* getNext() const;
-    Node* getPrevious() const;
+    Node& getNext() const;
+    Node& getPrevious() const;
 
-    Node* insertBefore(int value);
-    Node* insertAfter(int value);
+    Node& insertBefore(int value);
+    Node& insertAfter(int value);
 };
 
 #endif //LAB1_NODE_H

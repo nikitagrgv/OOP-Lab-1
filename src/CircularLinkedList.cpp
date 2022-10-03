@@ -18,15 +18,15 @@ CircularLinkedList::~CircularLinkedList()
 {
     while (_head != nullptr)
     {
-        removeNode(_head);
+        removeNode(*_head);
     }
 }
 
-void CircularLinkedList::removeNode(Node* node)
+void CircularLinkedList::removeNode(Node& node)
 {
-    if (node == _head)
+    if (&node == _head)
     {
-        Node* node_after_head = _head->getNext();
+        auto node_after_head = &_head->getNext();
 
         if (node_after_head == _head)
         {
@@ -38,66 +38,70 @@ void CircularLinkedList::removeNode(Node* node)
         }
     }
 
-    delete node;
+    delete &node;
 }
 
-Node* CircularLinkedList::getHead() const
+Node& CircularLinkedList::getHead() const
 {
-    return _head;
+    throwIfZeroSize();
+
+    return *_head;
 }
 
-Node* CircularLinkedList::getTail() const
+Node& CircularLinkedList::getTail() const
 {
-    if (_head == nullptr)
-    {
-        return nullptr;
-    }
+    throwIfZeroSize();
 
     return _head->getPrevious();
 }
 
-Node* CircularLinkedList::insertToBegin(int value)
+Node& CircularLinkedList::insertToBegin(int value)
 {
-    _head = insertToEnd(value);
+    _head = &insertToEnd(value);
 
-    return _head;
+    return *_head;
 }
 
-Node* CircularLinkedList::insertToEnd(int value)
+Node& CircularLinkedList::insertToEnd(int value)
 {
     if (_head == nullptr)
     {
         _head = new Node(value);
-        return _head;
+        return *_head;
     }
 
     return _head->insertBefore(value);
 }
 
-Node* CircularLinkedList::findNode(int value) const
+Node& CircularLinkedList::findNode(int value) const
 {
-    if (_head == nullptr)
-    {
-        return nullptr;
-    }
+    throwIfZeroSize();
 
     auto current_node = _head;
     do
     {
         if (current_node->getValue() == value)
         {
-            return current_node;
+            return *current_node;
         }
-        current_node = current_node->getNext();
+        current_node = &current_node->getNext();
     } while (current_node != _head);
 
-    return nullptr;
+    throw std::runtime_error("No such node");
+}
+
+void CircularLinkedList::throwIfZeroSize() const
+{
+    if (_head == nullptr)
+    {
+        throw std::runtime_error("CircularLinkedList has zero size");
+    }
 }
 
 int CircularLinkedList::getSize() const
 {
     int size = 0;
-    doForEachNodeConst([&size](auto node)
+    doForEachNodeConst([&size](const auto& node)
                        {
                            size++;
                        });
@@ -105,7 +109,7 @@ int CircularLinkedList::getSize() const
     return size;
 }
 
-void CircularLinkedList::doForEachNode(const std::function<void(Node*)>& f)
+void CircularLinkedList::doForEachNode(const std::function<void(Node&)>& f)
 {
     if (_head == nullptr)
     {
@@ -115,21 +119,21 @@ void CircularLinkedList::doForEachNode(const std::function<void(Node*)>& f)
     auto current_node = _head;
     do
     {
-        f(current_node);
-        current_node = current_node->getNext();
+        f(*current_node);
+        current_node = &current_node->getNext();
     } while (current_node != _head);
 }
 
-void CircularLinkedList::doForEachNodeConst(const std::function<void(const Node*)>& f) const
+void CircularLinkedList::doForEachNodeConst(const std::function<void(const Node&)>& f) const
 {
     const_cast<CircularLinkedList*>(this)->doForEachNode(f);
 }
 
 std::ostream& operator<<(std::ostream& os, const CircularLinkedList& list)
 {
-    list.doForEachNodeConst([&os](auto node)
+    list.doForEachNodeConst([&os](const auto& node)
                             {
-                                os << node->getValue() << " ";
+                                os << node.getValue() << " ";
                             });
 
     return os;
@@ -142,7 +146,7 @@ static void checkIStream(std::istream& is)
         is.clear();
         is.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-        throw std::runtime_error("Invalid CircularLinkedList data in stream");
+        throw std::runtime_error("Invalid CircularLinkedList data in the stream");
     }
 }
 
@@ -166,9 +170,9 @@ std::istream& operator>>(std::istream& is, CircularLinkedList& list)
 
 CircularLinkedList& CircularLinkedList::operator+=(const CircularLinkedList& list)
 {
-    list.doForEachNodeConst([this](auto node)
+    list.doForEachNodeConst([this](const auto& node)
                             {
-                                this->insertToEnd(node->getValue());
+                                this->insertToEnd(node.getValue());
                             });
 
     return *this;

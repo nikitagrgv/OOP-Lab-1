@@ -39,22 +39,24 @@ void Node::setValue(int value)
     _value = value;
 }
 
-Node* Node::getNext() const
+Node& Node::getNext() const
 {
-    return _next;
+    return *_next;
 }
 
-Node* Node::getPrevious() const
+Node& Node::getPrevious() const
 {
-    return _previous;
+    return *_previous;
 }
 
-Node* Node::insertBefore(int value)
+Node& Node::insertBefore(int value)
 {
-    return new Node(value, _previous, this);
+    auto node = new Node(value, _previous, this);
+    return *node;
 }
 
-Node* Node::insertAfter(int value)
+Node& Node::insertAfter(int value)
 {
-    return new Node(value, this, _next);
+    auto node = new Node(value, this, _next);
+    return *node;
 }

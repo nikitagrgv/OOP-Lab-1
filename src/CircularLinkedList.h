@@ -10,6 +10,8 @@ class CircularLinkedList
 private:
     Node* _head = nullptr;
 
+    void throwIfZeroSize() const;
+
 public:
     CircularLinkedList() = default;
     CircularLinkedList(const CircularLinkedList& list);
@@ -17,20 +19,20 @@ public:
 
     virtual ~CircularLinkedList();
 
-    void removeNode(Node* node);
+    void removeNode(Node& node);
 
-    Node* getHead() const;
-    Node* getTail() const;
+    Node& getHead() const;
+    Node& getTail() const;
 
-    void doForEachNode(const std::function<void(Node*)>& f);
-    void doForEachNodeConst(const std::function<void(const Node*)>& f) const;
+    void doForEachNode(const std::function<void(Node&)>& f);
+    void doForEachNodeConst(const std::function<void(const Node&)>& f) const;
 
-    Node* findNode(int value) const;
+    Node& findNode(int value) const;
 
     int getSize() const;
 
-    Node* insertToBegin(int value);
-    Node* insertToEnd(int value);
+    Node& insertToBegin(int value);
+    Node& insertToEnd(int value);
 
     CircularLinkedList& operator+=(const CircularLinkedList& list);
     CircularLinkedList& operator=(const CircularLinkedList& list);
