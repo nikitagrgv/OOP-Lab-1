@@ -23,7 +23,10 @@ private:
     static void connectNodes(Node* previous, Node* next);
 
 public:
-    Node(const Node& node) = delete;
+    Node(const Node&) = delete;
+    Node(Node&&) = delete;
+    Node& operator=(const Node&) = delete;
+    Node& operator=(Node&&) = delete;
 
     int getValue() const;
     void setValue(int value);
